@@ -23,6 +23,7 @@ There are two consumable resources by FR - products and inventory. They can be r
 
 1. Data model represented by three entities - product, product articles and articles inventory. Count of a product depends of available inventory articles.
 2. When a product selled - multiple inventory articles should be removed with it. It requires execute the changes in transaction to maintain consistency of parallel operations.
+3. Tables are normilized - but that could impact performance. To properly organize database model - more requirements have to be collected.
 
 ![Data model diagram](https://github.com/spzm/warehouse/raw/main/docs/resources/db-schema.png)
 
