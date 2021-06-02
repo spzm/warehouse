@@ -5,16 +5,16 @@ services:
     image: products-api
     build:
       context: products-api/.
-      target: development
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     environment:
       - PORT=3000
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASSWORD=saf23tv
+      - DB_PG_HOST=database
+      - DB_PG_PORT=5432
+      - DB_PG_USER=postgres
+      - DB_PG_PASSWORD=saf23tv
+      - DB_PG_DATABASE=products-db
     volumes:
-      - .:/app
+      - ./products-api/:/app
       - /app/node_modules
     networks:
       - backend
