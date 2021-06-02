@@ -108,6 +108,3 @@ dist
 
 # IDE specific files
 .idea
-
-# Nest build folder
-.dist
