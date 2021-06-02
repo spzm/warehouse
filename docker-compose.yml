@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  products-api:
+    container_name: products-api
+    image: products-api
+    build:
+      context: products-api/.
+      dockerfile: Dockerfile.dev
+    environment:
+      - PORT=3000
+      - DB_PG_HOST=database
+      - DB_PG_PORT=5432
+      - DB_PG_USER=postgres
+      - DB_PG_PASSWORD=saf23tv
+      - DB_PG_DATABASE=products-db
+    volumes:
+      - ./products-api/:/app
+      - /app/node_modules
+    networks:
+      - backend
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    restart: unless-stopped
+  database:
+    container_name: db
+    image: postgres:13.3-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=saf23tv
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ../db:/var/lib/postgresql/data
+    networks:
+      - backend
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+networks:
+  backend:
