@@ -1,23 +1,30 @@
 import {IsNotEmpty, IsNumber, IsString, Min, MinLength, ValidateNested} from "class-validator";
-import {Type} from "class-transformer";
+import {Expose, Type} from "class-transformer";
 
 export class CreateArticleDto {
-    @IsString()
-    @IsNotEmpty()
-    art_id: string;
+    @Type(() => Number)
+    @Min(0, {always: true})
+    art_id: number;
+
+    @Type(() => Number)
+    @Min(0, {always: true})
+    @Expose()
+    get id(): number {
+        return this.art_id;
+    }
 
     @IsString()
     @IsNotEmpty()
     @MinLength(2, {always: true})
     name: string;
 
-    @IsNumber()
+    @Type(() => Number)
     @Min(0, {always: true})
-    stock: string;
+    stock: number;
 }
 
 export class CreateArticlesDto {
     @Type(() => CreateArticleDto)
     @ValidateNested({each: true})
-    articles: CreateArticleDto[]
+    inventory: CreateArticleDto[]
 }

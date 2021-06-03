@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 
 import { DatabaseModule } from './database/database.module';
-import { ArticlesModule } from './invenory-articles/inventory-articles.module';
+import { ArticlesModule } from './inventory-articles/inventory-articles.module';
 
 @Module({
   imports: [

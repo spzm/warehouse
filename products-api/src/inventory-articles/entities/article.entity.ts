@@ -1,12 +1,12 @@
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import {Entity, Column, PrimaryColumn} from 'typeorm';
 import {IsDefined, IsString, MinLength} from "class-validator";
 
 @Entity()
-export class Articles {
-    @PrimaryGeneratedColumn({type: 'int'})
+export class Article {
+    @PrimaryColumn({type: 'int'})
     id: number;
 
-    @Column({type: 'varchar', length: 300})
+    @Column({type: 'varchar', length: 100})
     @IsDefined({always: true})
     @IsString({always: true})
     @MinLength(2, {always: true})

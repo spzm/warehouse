@@ -10,8 +10,8 @@
 There are two consumable resources by FR - products and inventory. They can be represented as two resources in REST API. Name "inventory" won't work well for REST naming convention, so 'articles' is used to get all items in inventory. 
 
 ```
-/products - GET, POST, PUT, DELETE
-/inventory - GET, POST, PUT, DELETE
+/products - GET, DELETE
+/inventory-articles - GET, POST, DELETE
 ```
 
 ### API design Tradeoffs:

@@ -3,10 +3,19 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Development
+
+1. Start docker compose
+```shell
+docker compose up
+```
+2. Follow Database init and database migration sections
+3. Server is running on http://localhost:3000
+
 ## Installation
 
-```bash
-$ npm install
+```shell
+npm install
 ```
 
 ## Database init
