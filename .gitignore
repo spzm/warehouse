@@ -108,3 +108,6 @@ dist
 
 # IDE specific files
 .idea
+
+# ORM Migration config
+ormconfig.ts

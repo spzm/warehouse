@@ -7,10 +7,10 @@ Goal - implement a warehouse software.
 
 ### Storing articles
 - Article should have: an identification number, name, available in stock.
-- Articles can be loaded from a file (inventory.json).
+- ArticlesEntity can be loaded from a file (inventory.json).
 
 ### Storing products
-- Products are made from different articles.
+- Products consist from different articles.
 - Product should have: name, price, list of articles with quantity.
 - Products can be loaded from a file (products.json)
 
