@@ -11,7 +11,7 @@ There are two consumable resources by FR - products and inventory. They can be r
 
 ```
 /products - GET, POST, PUT, DELETE
-/articles - GET, POST, PUT, DELETE
+/inventory - GET, POST, PUT, DELETE
 ```
 
 ### API design Tradeoffs:

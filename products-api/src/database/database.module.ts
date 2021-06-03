@@ -13,11 +13,12 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
                 port: configService.get('DB_PG_PORT'),
                 username: configService.get('DB_PG_USER'),
                 password: configService.get('DB_PG_PASSWORD'),
-                entities: [ '**/*.entity.ts' ],
+                database: configService.get('DB_PG_DATABASE'),
+                entities: [ `${__dirname}/../**/*.entity.{js,ts}` ],
                 migrationsTableName: 'migration',
-                migrations: ['src/migrations/*.ts'],
+                migrations: ['migrations/*.js'],
                 cli: {
-                    migrationsDir: 'src/migrations'
+                    migrationsDir: 'migrations'
                 }
             })
         })

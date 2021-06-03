@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
+import { ArticlesModule } from './invenory-articles/inventory-articles.module';
 
 @Module({
   imports: [
@@ -25,9 +23,10 @@ import { DatabaseModule } from './database/database.module';
               abortEarly: true
           }
       }),
-      DatabaseModule
+      DatabaseModule,
+      ArticlesModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
