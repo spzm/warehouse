@@ -11,7 +11,7 @@ export class Inventory {
 
   @Expose()
   get name(): string {
-    return this.article.name;
+    return this.article && this.article.name;
   }
 
   @OneToOne(() => Article, (article) => article.id, {

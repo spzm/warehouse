@@ -30,14 +30,14 @@ export class InventoryArticlesController {
 
   @UsePipes(new ValidationPipe({ transform: true }))
   @Post()
-  async createInventoryArticles(@Body() inventoryArticle: CreateArticlesDto) {
+  createInventoryArticles(@Body() inventoryArticle: CreateArticlesDto) {
     return this.inventoryArticlesService.createInventoryArticles(
       inventoryArticle,
     );
   }
 
   @Delete(':id')
-  async deletePost(@Param('id') id: string) {
+  deletePost(@Param('id') id: string) {
     return this.inventoryArticlesService.deleteInventoryArticles(Number(id));
   }
 }

@@ -4,6 +4,7 @@ import * as Joi from 'joi';
 
 import { DatabaseModule } from './database/database.module';
 import { ArticlesModule } from './inventory-articles/inventory-articles.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ArticlesModule } from './inventory-articles/inventory-articles.module';
     }),
     DatabaseModule,
     ArticlesModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [],

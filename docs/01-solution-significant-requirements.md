@@ -11,7 +11,7 @@ Goal - implement a warehouse software.
 
 ### Storing products
 - Products consist from different articles.
-- Product should have: name, price, list of articles with quantity.
+- ProductEntity should have: name, price, list of articles with quantity.
 - Products can be loaded from a file (products.json)
 
 ### Minimal functionality
