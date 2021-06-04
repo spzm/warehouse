@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { InventoryArticlesService } from './inventory-articles.service';
 import { CreateArticlesDto } from './dto/create-articles-dto';
-import {classToPlain} from "class-transformer";
+import { classToPlain } from 'class-transformer';
 
 @Controller('inventory-articles')
 export class InventoryArticlesController {
@@ -21,14 +21,16 @@ export class InventoryArticlesController {
 
   @Get()
   getAllInventoryArticles() {
-    const inventoryArticles = this.inventoryArticlesService.getAllInventoryArticles();
+    const inventoryArticles =
+      this.inventoryArticlesService.getAllInventoryArticles();
 
     return classToPlain(inventoryArticles);
   }
 
   @Get(':id')
   getInventoryByArticleId(@Param('id') id: string) {
-    const inventoryArticle = this.inventoryArticlesService.getInventoryArticleById(Number(id));
+    const inventoryArticle =
+      this.inventoryArticlesService.getInventoryArticleById(Number(id));
 
     return classToPlain(inventoryArticle);
   }

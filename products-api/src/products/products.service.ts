@@ -1,4 +1,4 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductArticles } from './entities/product-articles.entity';
 import { Repository } from 'typeorm';
@@ -6,8 +6,8 @@ import { Product } from './entities/product.entity';
 import { classToPlain, plainToClass } from 'class-transformer';
 import { GetProductDto } from './dto/get-product-dto';
 import { CreateProductDto } from './dto/create-product-dto';
-import {InventoryArticlesService} from "../inventory-articles/inventory-articles.service";
-import {SellAmountDto} from "./dto/sell-amount-dto";
+import { InventoryArticlesService } from '../inventory-articles/inventory-articles.service';
+import { SellAmountDto } from './dto/sell-amount-dto';
 
 @Injectable()
 export class ProductsService {
@@ -15,7 +15,7 @@ export class ProductsService {
     @InjectRepository(ProductArticles)
     private productArticles: Repository<ProductArticles>,
     @InjectRepository(Product) private product: Repository<Product>,
-    private inventoryArticlesService: InventoryArticlesService
+    private inventoryArticlesService: InventoryArticlesService,
   ) {}
 
   async getAllProducts() {
@@ -87,12 +87,17 @@ export class ProductsService {
     const amount = sellAmount.amount;
 
     if (product.available_stock < amount) {
-      throw new NotFoundException(`Available Stock ${product.available_stock} less than amount ${amount}.`);
+      throw new NotFoundException(
+        `Available Stock ${product.available_stock} less than amount ${amount}.`,
+      );
     }
 
     for (const inventory of product.contain_articles) {
-      const {art_id, amount_of} = inventory;
-      await this.inventoryArticlesService.sellInventoryArticle(art_id, amount_of * amount);
+      const { art_id, amount_of } = inventory;
+      await this.inventoryArticlesService.sellInventoryArticle(
+        art_id,
+        amount_of * amount,
+      );
     }
   }
 }

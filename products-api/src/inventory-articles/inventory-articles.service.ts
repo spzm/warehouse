@@ -65,7 +65,7 @@ export class InventoryArticlesService {
 
     await this.inventory.save({
       ...inventory,
-      stock: inventory.stock - amount
+      stock: inventory.stock - amount,
     });
   }
 }

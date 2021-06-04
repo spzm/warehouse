@@ -1,5 +1,5 @@
-import {Type} from "class-transformer";
-import {Min} from "class-validator";
+import { Type } from 'class-transformer';
+import { Min } from 'class-validator';
 
 export class SellAmountDto {
   @Type(() => Number)

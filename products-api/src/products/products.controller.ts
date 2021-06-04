@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product-dto';
-import {SellAmountDto} from "./dto/sell-amount-dto";
-import {classToPlain} from "class-transformer";
+import { SellAmountDto } from './dto/sell-amount-dto';
+import { classToPlain } from 'class-transformer';
 
 @Controller('products')
 export class ProductsController {
