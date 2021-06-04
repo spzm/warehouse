@@ -11,6 +11,7 @@ docker compose up
 ```
 2. Follow Database init and database migration sections
 3. Server is running on http://localhost:3000
+3. Swagger is available on http://localhost:3000/api
 4. [Postman collection to upload data](https://github.com/spzm/warehouse/blob/main/docs/resources/warehouse.postman_collection.json)
 
 ## Installation
