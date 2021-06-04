@@ -11,6 +11,7 @@ docker compose up
 ```
 2. Follow Database init and database migration sections
 3. Server is running on http://localhost:3000
+4. [Postman collection to upload data](https://github.com/spzm/warehouse/blob/main/docs/resources/warehouse.postman_collection.json)
 
 ## Installation
 
@@ -28,7 +29,7 @@ npm install
 | DB_PG_HOST     | Postgre host    |               |
 | DB_PG_PORT     | Postgre port    |               |
 | DB_PG_DATABASE | Posgre database |               |
-| DB_PG_USER     | Posgre user     |               |   
+| DB_PG_USER     | Posgre user     |               |
 | DB_PG_PASSWORD | Posgre password |               |
 | PORT           | Server port     | 3000          |
 

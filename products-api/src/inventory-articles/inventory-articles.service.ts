@@ -19,7 +19,7 @@ export class InventoryArticlesService {
     });
 
     return {
-      inventory: classToPlain(plainToClass(Inventory, articles)),
+      inventory: plainToClass(Inventory, articles),
       count,
     };
   }
@@ -33,7 +33,7 @@ export class InventoryArticlesService {
       throw new NotFoundException(`Inventory Article with id ${id} not found`);
     }
 
-    return classToPlain(plainToClass(Inventory, inventoryArticle));
+    return plainToClass(Inventory, inventoryArticle);
   }
 
   async createInventoryArticles(inventoryArticlesDto: CreateArticlesDto) {
@@ -58,5 +58,14 @@ export class InventoryArticlesService {
     if (!deleteResponse.affected) {
       throw new NotFoundException(`Inventory Article with id ${id} not found`);
     }
+  }
+
+  async sellInventoryArticle(id: number, amount: number) {
+    const inventory = await this.getInventoryArticleById(id);
+
+    await this.inventory.save({
+      ...inventory,
+      stock: inventory.stock - amount
+    });
   }
 }

@@ -7,7 +7,8 @@ import { Inventory } from './entities/inventory.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Article, Inventory])],
+  exports: [InventoryArticlesService],
   controllers: [InventoryArticlesController],
   providers: [InventoryArticlesService],
 })
-export class ArticlesModule {}
+export class InventoryArticlesModule {}

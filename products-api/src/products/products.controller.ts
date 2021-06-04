@@ -1,6 +1,8 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product-dto';
+import {SellAmountDto} from "./dto/sell-amount-dto";
+import {classToPlain} from "class-transformer";
 
 @Controller('products')
 export class ProductsController {
@@ -12,12 +14,19 @@ export class ProductsController {
   }
 
   @Get(':id')
-  getProduct(@Param('id') id: string) {
-    return this.productsService.getProduct(Number(id));
+  getProductById(@Param('id') id: string) {
+    const product = this.productsService.getProductById(Number(id));
+
+    return classToPlain(product);
   }
 
   @Post()
   createProducts(@Body() products: CreateProductDto) {
     return this.productsService.createProducts(products);
+  }
+
+  @Post(':id/sell')
+  sellProduct(@Param('id') id: string, @Body() sellAmount: SellAmountDto) {
+    return this.productsService.sellProduct(Number(id), sellAmount);
   }
 }

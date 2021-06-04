@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductArticles } from './entities/product-articles.entity';
 import { Repository } from 'typeorm';
@@ -6,6 +6,8 @@ import { Product } from './entities/product.entity';
 import { classToPlain, plainToClass } from 'class-transformer';
 import { GetProductDto } from './dto/get-product-dto';
 import { CreateProductDto } from './dto/create-product-dto';
+import {InventoryArticlesService} from "../inventory-articles/inventory-articles.service";
+import {SellAmountDto} from "./dto/sell-amount-dto";
 
 @Injectable()
 export class ProductsService {
@@ -13,6 +15,7 @@ export class ProductsService {
     @InjectRepository(ProductArticles)
     private productArticles: Repository<ProductArticles>,
     @InjectRepository(Product) private product: Repository<Product>,
+    private inventoryArticlesService: InventoryArticlesService
   ) {}
 
   async getAllProducts() {
@@ -34,7 +37,7 @@ export class ProductsService {
     };
   }
 
-  async getProduct(id: number) {
+  async getProductById(id: number) {
     const product = await this.product
       .createQueryBuilder('product')
       .where('product.id=:id', { id })
@@ -48,7 +51,11 @@ export class ProductsService {
       ])
       .getOne();
 
-    return classToPlain(plainToClass(GetProductDto, product));
+    if (!product) {
+      throw new NotFoundException(`Product with id ${id} not found`);
+    }
+
+    return plainToClass(GetProductDto, product);
   }
 
   async createProducts(productsDto: CreateProductDto) {
@@ -65,5 +72,27 @@ export class ProductsService {
     }
 
     return productsItems;
+  }
+
+  async sellProduct(id: number, sellAmount: SellAmountDto) {
+    const productEntity = await this.getProductById(id);
+    console.log(productEntity);
+
+    if (!productEntity) {
+      throw new NotFoundException(`Product with id ${id} not found`);
+    }
+
+    const product = plainToClass(GetProductDto, productEntity);
+
+    const amount = sellAmount.amount;
+
+    if (product.available_stock < amount) {
+      throw new NotFoundException(`Available Stock ${product.available_stock} less than amount ${amount}.`);
+    }
+
+    for (const inventory of product.contain_articles) {
+      const {art_id, amount_of} = inventory;
+      await this.inventoryArticlesService.sellInventoryArticle(art_id, amount_of * amount);
+    }
   }
 }
