@@ -10,12 +10,13 @@
 There are two consumable resources by FR - products and inventory. They can be represented as two resources in REST API. Name "inventory" won't work well for REST naming convention, so 'articles' is used to get all items in inventory. 
 
 ```
-/products - GET, DELETE
+/products - GET, POST
+/products/:id/sell POST - to sell product
 /inventory-articles - GET, POST, DELETE
 ```
 
 ### API design Tradeoffs:
-- DELETE method to represent a selling is used for simplicity. If more requirements or more detailed process explained - /checkout and /
+- POST method on /sell command for resource represents selling. With current requirements - there is limited understanding of further API growth and warehouse domain - so the most simple choice done.
 - Selling a product remove multiple articles and product count will be updated. In real worlds when we sell a product it not just disappear, so we have to store information about sold product and articles. For the reason of simplicity, we will use additional table to log that, but choosing the approach in real system design depends on global requirements.
 - node.js and microservices architecture will be used as it is part of future sustainable platform (target platform is k8s and GCloud). In general, backend choice have many options by the language and framework. For the architecture - serverless or hybrid SOA/microservice architectures are also valid. In general, MACH architecture represents the modern direction for scaled e-commerce platform.
 

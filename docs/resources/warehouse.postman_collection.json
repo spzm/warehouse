@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "4c26b8dd-36d5-48f7-a7bd-d27570f6a347",
+		"name": "warehouse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "warehouseadd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"inventory\": [\n    {\n      \"art_id\": \"1\",\n      \"name\": \"leg\",\n      \"stock\": \"12\"\n    },\n    {\n      \"art_id\": \"2\",\n      \"name\": \"screw\",\n      \"stock\": \"17\"\n    },\n    {\n      \"art_id\": \"3\",\n      \"name\": \"seat\",\n      \"stock\": \"2\"\n    },\n    {\n      \"art_id\": \"4\",\n      \"name\": \"table top\",\n      \"stock\": \"1\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/inventory-articles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"inventory-articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-products",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"products\": [\n    {\n      \"name\": \"Dining Chair\",\n      \"contain_articles\": [\n        {\n          \"art_id\": \"1\",\n          \"amount_of\": \"4\"\n        },\n        {\n          \"art_id\": \"2\",\n          \"amount_of\": \"8\"\n        },\n        {\n          \"art_id\": \"3\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Dinning Table\",\n      \"contain_articles\": [\n        {\n          \"art_id\": \"1\",\n          \"amount_of\": \"4\"\n        },\n        {\n          \"art_id\": \"2\",\n          \"amount_of\": \"8\"\n        },\n        {\n          \"art_id\": \"4\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sell Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": \"2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/products/1/sell",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products",
+						"1",
+						"sell"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sell-product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": \"2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/products/1/sell",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products",
+						"1",
+						"sell"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-inventory-article",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/inventory-articles/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"inventory-articles",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-inventory-articles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"inventory\": [\n    {\n      \"art_id\": \"1\",\n      \"name\": \"leg\",\n      \"stock\": \"42\"\n    },\n    {\n      \"art_id\": \"2\",\n      \"name\": \"screw\",\n      \"stock\": \"47\"\n    },\n    {\n      \"art_id\": \"3\",\n      \"name\": \"seat\",\n      \"stock\": \"99\"\n    },\n    {\n      \"art_id\": \"4\",\n      \"name\": \"table top\",\n      \"stock\": \"32\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/inventory-articles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"inventory-articles",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

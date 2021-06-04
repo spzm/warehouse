@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { InventoryArticlesService } from './inventory-articles.service';
 import { CreateArticlesDto } from './dto/create-articles-dto';
+import { classToPlain } from 'class-transformer';
 
 @Controller('inventory-articles')
 export class InventoryArticlesController {
@@ -20,24 +21,30 @@ export class InventoryArticlesController {
 
   @Get()
   getAllInventoryArticles() {
-    return this.inventoryArticlesService.getAllInventoryArticles();
+    const inventoryArticles =
+      this.inventoryArticlesService.getAllInventoryArticles();
+
+    return classToPlain(inventoryArticles);
   }
 
   @Get(':id')
   getInventoryByArticleId(@Param('id') id: string) {
-    return this.inventoryArticlesService.getInventoryArticleById(Number(id));
+    const inventoryArticle =
+      this.inventoryArticlesService.getInventoryArticleById(Number(id));
+
+    return classToPlain(inventoryArticle);
   }
 
   @UsePipes(new ValidationPipe({ transform: true }))
   @Post()
-  async createInventoryArticles(@Body() inventoryArticle: CreateArticlesDto) {
+  createInventoryArticles(@Body() inventoryArticle: CreateArticlesDto) {
     return this.inventoryArticlesService.createInventoryArticles(
       inventoryArticle,
     );
   }
 
   @Delete(':id')
-  async deletePost(@Param('id') id: string) {
+  deletePost(@Param('id') id: string) {
     return this.inventoryArticlesService.deleteInventoryArticles(Number(id));
   }
 }
